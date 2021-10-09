@@ -24,14 +24,14 @@ html, body {
 
 .slider {
 	height: 800px;
-	background-image: url(img/slider.jpg); 
+	background-image: url(/static/geekshop/img/slider.jpg);
 	padding-left: 98px;
 	padding-right: 211px;
 	position: relative;
 }
 
 .logo {
-	background-image: url(img/logo.png);
+	background-image: url(/static/geekshop/img/logo.png);
 	margin-top: 63px;
 	width: 185px;
 	height: 22px;
@@ -75,7 +75,7 @@ html, body {
 	display: block;
 	width: 23px;
 	height: 23px;	
-	background-image: url(img/search.png);
+	background-image: url(/static/geekshop/img/search.png);
 	position: absolute;
 	top: 63px;
 	left: 1176px;
@@ -84,7 +84,7 @@ html, body {
 	display: block;
 	width: 23px;
 	height: 23px;	
-	background-image: url(img/basket.png);
+	background-image: url(/static/geekshop/img/basket.png);
 	position: absolute;
 	top: 63px;
 	left: 1210px;
@@ -421,17 +421,6 @@ html, body {
 	width: 460px;
 	margin-top: 287px;
 	position: absolute;
-}
-
-.red {
-	text-transform: uppercase;
-	color: #e53935;
-	font-size: 18px;
-	font-weight: 700;
-	text-align: left;
-	letter-spacing: 1px;
-	line-height: 17px;
-	margin-bottom: 22px;
 }
 
 .exclusive {
@@ -843,14 +832,6 @@ td:first-child {
 	margin-bottom: 140px;
 }
 
-.hero-white {
-	background-color: #fff;
-	height: 119px;
-	padding-left: 98px;
-	padding-right: 211px;
-	position: relative;
-}
-
 .links {
 	height: 70px;
 	background-color: #f4f4f4;
@@ -887,13 +868,6 @@ td:first-child {
 	color:  #6c6c6c;
 	font-size: 18px;
 	font-weight: 700;
-}
-
-.details-products {
-	padding-left: 98px;
-	padding-right: 98px;
-	margin-top: 98px;
-	height: 651px; 
 }
 .details-slider {
 	width: 570px;

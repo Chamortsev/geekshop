@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mainapp.models import Product, Locations
+from mainapp.models import Product, Location
 
 def main(request):
     title = 'Магазин'
@@ -18,7 +18,7 @@ def main(request):
 def contacts(request):
     title = 'Контакты'
     lname = 'contacts'
-    locations = Locations.objects.all()[:3]
+    locations = Location.objects.all()[:3]
 
     context = {
     'title' : title,

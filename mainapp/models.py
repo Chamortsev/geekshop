@@ -76,7 +76,7 @@ class City(models.Model):
         return self.name
 
 
-class Locations(models.Model):
+class Location(models.Model):
     city = models.ForeignKey(
         City,
         on_delete=models.CASCADE,

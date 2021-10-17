@@ -1,0 +1,155 @@
+[
+  {
+    "model": "mainapp.productcategory",
+    "pk": 1,
+    "fields": {
+      "name": "все",
+      "description": "Все",
+      "created": "2021-10-09T16:25:12.251Z",
+      "updated": "2021-10-09T17:15:19.071Z"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 2,
+    "fields": {
+      "name": "дом",
+      "description": "",
+      "created": "2021-10-09T17:12:28.627Z",
+      "updated": "2021-10-09T17:12:28.627Z"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 3,
+    "fields": {
+      "name": "офис",
+      "description": "",
+      "created": "2021-10-09T17:14:35.418Z",
+      "updated": "2021-10-09T17:14:35.418Z"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 4,
+    "fields": {
+      "name": "модерн",
+      "description": "",
+      "created": "2021-10-09T17:14:51.569Z",
+      "updated": "2021-10-09T17:14:51.569Z"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 5,
+    "fields": {
+      "name": "классика",
+      "description": "",
+      "created": "2021-10-09T17:15:05.996Z",
+      "updated": "2021-10-09T17:15:05.996Z"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 1,
+    "fields": {
+      "category": 2,
+      "name": "Кресло",
+      "image": "products_images/product-2.jpg",
+      "short_desc": "Кресло удобное",
+      "description": "Это супер кресло",
+      "price": "12090.00",
+      "quantity": 10
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 2,
+    "fields": {
+      "category": 4,
+      "name": "Лампа",
+      "image": "products_images/product-1.jpg",
+      "short_desc": "Лампа модерн",
+      "description": "Модерновая лампа",
+      "price": "10000.00",
+      "quantity": 3
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 3,
+    "fields": {
+      "category": 2,
+      "name": "Диван",
+      "image": "products_images/product-3-sm.jpg",
+      "short_desc": "Диван для дома",
+      "description": "Диван супер удобный",
+      "price": "22000.00",
+      "quantity": 0
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 4,
+    "fields": {
+      "category": 3,
+      "name": "Часы",
+      "image": "products_images/product-4-sm.jpg",
+      "short_desc": "Офисные часы",
+      "description": "Часы для офиса и дома.",
+      "price": "3600.00",
+      "quantity": 4
+    }
+  },
+  {
+    "model": "mainapp.city",
+    "pk": 1,
+    "fields": {
+      "name": "Москва"
+    }
+  },
+  {
+    "model": "mainapp.city",
+    "pk": 2,
+    "fields": {
+      "name": "Казань"
+    }
+  },
+  {
+    "model": "mainapp.city",
+    "pk": 3,
+    "fields": {
+      "name": "Екатеринбург"
+    }
+  },
+  {
+    "model": "mainapp.locations",
+    "pk": 1,
+    "fields": {
+      "city": 1,
+      "phone": "+7 (499)9999999",
+      "email": "info@chear.ru",
+      "address": "Неглинная 18, к2 офис 11"
+    }
+  },
+  {
+    "model": "mainapp.locations",
+    "pk": 2,
+    "fields": {
+      "city": 2,
+      "phone": "+7(543)3333333",
+      "email": "info-kaz@chear.ru",
+      "address": "ул. Ленина 18, к2 офис 11"
+    }
+  },
+  {
+    "model": "mainapp.locations",
+    "pk": 3,
+    "fields": {
+      "city": 3,
+      "phone": "+7(333)6667789",
+      "email": "info-ekb@chear.ru",
+      "address": "Маршала Голованова 10 офис 11"
+    }
+  }
+]

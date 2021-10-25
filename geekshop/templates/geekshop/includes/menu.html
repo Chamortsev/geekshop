@@ -12,7 +12,7 @@
 				</a>
 			</li>
 		{% if basket %}
-		<li><a href="{% url 'basket:view' %}">Корзина /{{basket_count}} шт.</a>
+		<li><a href="{% url 'basket:view' %}">Корзина /{{basket.0.total_cost|floatformat:0}} руб./ {{ basket.0.total_quantity }} шт.</a>
 
 		</li>
 			{% endif %}

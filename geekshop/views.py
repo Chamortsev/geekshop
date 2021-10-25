@@ -6,7 +6,9 @@ from mainapp.models import Product, Location
 def main(request):
     title = 'Магазин'
     lname = 'main'
-    basket = Basket.objects.filter(user=request.user)
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
     products = Product.objects.all()[:4]
 
     context = {
@@ -14,7 +16,7 @@ def main(request):
     'lname': lname,
     'products': products,
     'basket': basket,
-    'basket_count': basket.count(),
+    'basket_count': basket,
     }
 
     return render(request, 'geekshop/index.html', context)

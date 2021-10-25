@@ -1,26 +1,33 @@
 {% extends 'geekshop/base.html' %}
+{% block css %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="basketapp/js/basket_scripts.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% endblock %}
+
 {% load static %}
+
 {% block content%}
 <div class="hero">
 {% include 'geekshop/includes/menu.html' %}
 </div>
 
-
-    {% for item in basket %}
-
-        <div class="basket_record">
-            <img src="/media/{{ item.product.image }}" alt="{{ item.product.short_desc }}">
-            <span class="product_name">{{ item.product.name }}</span>
-            <span class="product_price">{{ item.product.price }}&nbsp руб</span>
-            <input class="product_qty" type="number"
-                   name="{{ item.pk }}" min="0" max="{{ item.product.quantity }}"
-                   value="{{ item.quantity }}">
-        </div>
-    {% endfor %}
-
-    <div class="basket_summary">
-        В корзине {{ basket_total_quantity }} товаров общей стоимостью
-        {{ basket_cost }} руб
+   <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Фото</th>
+            <th scope="col">Товар</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Стоимость</th>
+            <th scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody class="basket_list">
+            {% include 'basketapp/includes/inc_basket_list.html' %}
+        </tbody>
+    </table>
     </div>
 
    {% endblock %}

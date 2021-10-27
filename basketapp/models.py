@@ -20,10 +20,8 @@ class Basket(models.Model):
         default=0,
     )
 
-    add_datetime = models.DateTimeField(
-        verbose_name='время',
-        auto_now_add=True,
-    )
+    add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
+    is_active = models.BooleanField(verbose_name='активна', default=True)
 
     @property
     def product_cost(self):

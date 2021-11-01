@@ -21,9 +21,9 @@ class ProductCategoryEditForm(forms.ModelForm):
             field.help_text = ''
 
 
-class AdminEditFormProductCategory(forms.ModelForm):
+class ProductEditForm(forms.ModelForm):
     class Meta:
-        model = ProductCategory
+        model = Product
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

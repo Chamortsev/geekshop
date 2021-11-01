@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <main>
     <div class="container-fluid">
         <h1 class="mt-4">Категории товаров</h1>
@@ -32,7 +33,7 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        {% for category in objects %}
+                        {% for category in object_list %}
                             <tr {% if not category.is_active %} style="opacity: 0.5;" {% endif %}>
                                 <td>
                                     {{ category.name }}

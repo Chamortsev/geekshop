@@ -2,7 +2,7 @@
     <a href="/" class="logo"></a>
     <ul class="menu">
         <li><a href="{% url 'main' %}" class="{% if request == '/' %}active{% endif %}">домой</a></li>
-        <li><a href="{% url 'products:products' %}">продукты</a></li>
+        <li><a href="{% url 'products:main' %}">продукты</a></li>
         <li><a href="{% url 'contacts' %}">контакты</a></li>
         {% if user.is_authenticated %}
             <li class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

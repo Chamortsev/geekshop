@@ -7,16 +7,12 @@ def main(request):
     title = 'Магазин'
     lname = 'main'
     basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
     products = Product.objects.all()[:4]
 
     context = {
     'title' : title,
     'lname': lname,
     'products': products,
-    'basket': basket,
-    'basket_count': basket,
     }
 
     return render(request, 'geekshop/index.html', context)
@@ -32,7 +28,6 @@ def contacts(request):
     'title' : title,
     'lname' : lname,
     'locations' : locations,
-    'basket' : basket,
     'basket_count': basket.count(),
     }
 

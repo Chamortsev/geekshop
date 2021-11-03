@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mainapp.context_processors.basket'
             ],
         },
     },
@@ -140,3 +141,21 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL ='/auth/login/'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '8b936b8ff7fbdd'
+EMAIL_HOST_PASSWORD = '4cb858d180498c'
+EMAIL_PORT = '2525'
+
+DOMAIN_NAME = 'http://localhost:8000'
+
+
+# для локального запуска SMTP сервера
+# python -m smtpd -n -c DebuggingServer localhost:25
+
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = '25'
+# EMAIL_HOST_USER = 'django@geekshop.local'
+# EMAIL_HOST_PASSWORD = 'geekshop'
+# EMAIL_USE_SSL = False
+

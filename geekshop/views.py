@@ -5,13 +5,12 @@ from mainapp.models import Product, Location
 
 def main(request):
     title = 'Магазин'
-    lname = 'main'
-    basket = []
+    # lname = 'main'
     products = Product.objects.all()[:4]
 
     context = {
     'title' : title,
-    'lname': lname,
+    # 'lname': lname,
     'products': products,
     }
 
@@ -21,14 +20,16 @@ def main(request):
 def contacts(request):
     title = 'Контакты'
     lname = 'contacts'
+    basket = []
     locations = Location.objects.all()[:3]
-    basket = Basket.objects.filter(user=request.user)
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
 
     context = {
     'title' : title,
-    'lname' : lname,
+    # 'lname' : lname,
     'locations' : locations,
-    'basket_count': basket.count(),
+    # 'basket_count': basket.count(),
     }
 
     return render(request, 'geekshop/contact.html', context)

@@ -1,0 +1,9 @@
+http://127.0.0.1/
+http://127.0.0.1/products/
+http://127.0.0.1/contact/
+http://127.0.0.1/products/category/1/
+http://127.0.0.1/products/category/2/
+http://127.0.0.1/products/category/3/
+http://127.0.0.1/products/category/4/
+http://127.0.0.1/basket/
+http://127.0.0.1/order/

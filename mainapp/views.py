@@ -6,6 +6,82 @@ from django.shortcuts import render, get_object_or_404
 from basketapp.models import Basket
 from mainapp.models import ProductCategory, Product
 
+from django.conf import settings
+from django.core.cache import cache
+from django.views.decorators.cache import  cache_page
+
+def get_links_menu():
+    if settings.LOW_CACHE:
+        key = 'links_menu'
+        links_menu = cache.get(key)
+        if links_menu is None:
+            links_menu = ProductCategory.objects.filter(is_active=True)
+            cache.set(key, links_menu)
+        return links_menu
+    else:
+        return ProductCategory.objects.filter(is_active=True)
+
+
+def get_category(pk):
+    if settings.LOW_CACHE:
+        key = f'category_{pk}'
+        category = cache.get(key)
+        if category is None:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            cache.set(key, category)
+        return category
+    else:
+        return get_object_or_404(ProductCategory, pk=pk)
+
+
+def get_products(pk):
+    if settings.LOW_CACHE:
+        key = 'products'
+        products = cache.get(key)
+        if products is None:
+            products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
+            cache.set(key, products)
+        return products
+    else:
+        return Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
+
+
+def get_product(pk):
+    if settings.LOW_CACHE:
+        key = f'product_{pk}'
+        product = cache.get(key)
+        if product is None:
+            product = get_object_or_404(Product, pk=pk)
+            cache.set(key, product)
+        return product
+    else:
+        return get_object_or_404(Product, pk=pk)
+
+
+def get_products_ordered_by_price():
+    if settings.LOW_CACHE:
+        key = 'products_ordered_by_price'
+        products = cache.get(key)
+        if products is None:
+            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+            cache.set(key, products)
+        return products
+    else:
+        return Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+
+
+def get_products_in_category_ordered_by_price():
+    if settings.LOW_CACHE:
+        key = f'products_in_category_ordered_by_price_{pk}'
+        products = cache.get(key)
+        if products is None:
+            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+            cache.set(key, products)
+        return products
+    else:
+        return Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+
+
 
 def get_basket(user):
     if user.is_authenticated:
@@ -15,7 +91,8 @@ def get_basket(user):
 
 
 def get_hot_product():
-    products = Product.objects.all()
+    # products = Product.objects.all()
+    products = get_products()
     return random.sample(list(products), 1)[0]
 
 
@@ -23,11 +100,12 @@ def get_same_products(hot_product):
     same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
     return same_products
 
-
+@cache_page(3600)
 def products(request, pk=None, page=1):
     title = 'Каталог'
+    links_menu = get_links_menu()
     # lname = 'products'
-    links_menu = ProductCategory.objects.all()
+    # links_menu = ProductCategory.objects.all()
     # products = Product.objects.all().order_by('price')
     basket = get_basket(request.user)
 
@@ -37,15 +115,13 @@ def products(request, pk=None, page=1):
             # category = {'name': 'все'}
             # basket = Basket.objects.filter(user=request.user)
             category = {'pk': 0, 'name': 'все'}
-            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+            # products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+            products = get_products_ordered_by_price()
 
         else:
-            category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(
-                category__pk=pk,
-                is_active=True,
-                category__is_active=True
-            ).order_by('price')
+            # category = get_object_or_404(ProductCategory, pk=pk)
+            category = get_category(pk)
+            products = get_products_in_category_ordered_by_price(pk)
             # basket = Basket.objects.filter(user=request.user)
 
         paginator = Paginator(products, 2)
@@ -67,7 +143,8 @@ def products(request, pk=None, page=1):
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
-    products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+    # products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price') # .select_related('category')[:3]
+    products = get_products()[:3]
     context = {
         'title': title,
         'links_menu': links_menu,
@@ -78,10 +155,11 @@ def products(request, pk=None, page=1):
 
     return render(request, 'mainapp/products.html', context)
 
-
+@cache_page(3600)
 def product(request, pk):
     title = 'Описание'
-    product = get_object_or_404(Product, pk=pk)
+    # product = get_object_or_404(Product, pk=pk)
+    product = get_product(pk)
 
     context = {
         'title': title,
